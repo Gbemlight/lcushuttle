@@ -1,0 +1,24 @@
+/* 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+* {
+  transition-property: color, background-color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+*:disabled,
+*[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+ */

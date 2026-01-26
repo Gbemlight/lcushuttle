@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Global Styles */
+body {
+  background-color: #1e3a8a;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth fade-in animation for modals */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Smooth slide-in animation for cards */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2e84da;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #286bbd;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2873dd;
+}
+
+/* Button hover effects */
+button {
+  transition-property: background-color, color, border-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Link hover effects */
+a {
+  transition-property: color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
