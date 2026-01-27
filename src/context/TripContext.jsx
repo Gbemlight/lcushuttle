@@ -9,31 +9,44 @@ const INITIAL_TRIPS = [
     route: 'Soka Junction → Lead City University',
     shortRoute: 'Soka → LCU',
     time: '07:30 AM',
+    duration: '~25 mins',
     capacity: 30,
     booked: 18,
     passengers: ['Chioma', 'Bimbo', 'Adekunle', 'Zainab', 'Obinna', 'Fatima', 'Tunde', 'Amara', 'Kayode', 'Blessing', 'Chukwu', 'Adanna', 'Segun', 'Folake', 'Ikechukwu', 'Nia', 'Marcus', 'Zara'],
-    status: 'Filling'
+    status: 'Filling',
+    isPopular: false
   },
   {
     id: 2,
     route: 'Soka Junction → Lead City University',
     shortRoute: 'Soka → LCU',
     time: '08:30 AM',
+    duration: '~25 mins',
     capacity: 30,
     booked: 28,
     passengers: ['David', 'Funke', 'Emeka', 'Aisha', 'Taiwo', 'Damilola', 'Kemi', 'Samuel', 'Blessing', 'Tobias', 'Chidinma', 'Ibrahim', 'Gloria', 'Iniobong', 'Jude', 'Atanda', 'Vivian', 'Pascal', 'Afolabi', 'Rotimi', 'Chinyere', 'Yusuf', 'Olamide', 'Tayo', 'Ifeanyi', 'Temitope', 'Adewale', 'Chinelo'],
-    status: 'Filling'
+    status: 'Filling',
+    isPopular: true
   },
   {
     id: 3,
     route: 'Soka Junction → Lead City University',
     shortRoute: 'Soka → LCU',
     time: '04:30 PM',
+    duration: '~25 mins',
     capacity: 35,
     booked: 5,
     passengers: ['Leah', 'Amobi', 'Hauwa', 'Prosper', 'Ruth'],
-    status: 'Filling'
+    status: 'Filling',
+    isPopular: false
   },
+];
+
+// Mock booking history (for demo purposes)
+const MOCK_BOOKING_HISTORY = [
+  { id: 1, time: '08:30 AM', date: 'Today', dropoff: 'Gate', status: 'Upcoming' },
+  { id: 2, time: '08:30 AM', date: 'Yesterday', dropoff: 'Car Park', status: 'Completed' },
+  { id: 3, time: '07:30 AM', date: '2 days ago', dropoff: 'Gate', status: 'Completed' },
 ];
 
 // Available dropoff locations
@@ -45,8 +58,7 @@ const DROPOFF_LOCATIONS = [
 export const TripProvider = ({ children }) => {
   const [trips, setTrips] = useState(INITIAL_TRIPS);
   const [bookings, setBookings] = useState([]);
-
-  // Action: Book a seat on a specific trip
+  const [userBookingHistory] = useState(MOCK_BOOKING_HISTORY);
   const bookSeat = (tripId, dropoffLocation, passengerName = 'Anonymous Passenger') => {
     let bookingSuccessful = false;
 
@@ -99,6 +111,7 @@ export const TripProvider = ({ children }) => {
     <TripContext.Provider value={{
       trips,
       bookings,
+      userBookingHistory,
       bookSeat,
       getTripById,
       getAvailableSeats,

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useTrips } from '../context/TripContext';
-import { CheckCircle, Clock, MapPin, Users, AlertCircle, ArrowLeft } from 'lucide-react';
+import { CheckCircle, Clock, MapPin, Users, AlertCircle, ArrowLeft, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Booking page component - allows students to select trips, dropoff, and reserve seats
 const BookingPage = () => {
-  const { trips, bookSeat, getAvailableSeats, dropoffLocations } = useTrips();
+  const { trips, bookSeat, getAvailableSeats, dropoffLocations, userBookingHistory } = useTrips();
   const [selectedTripId, setSelectedTripId] = useState(null);
   const [selectedDropoff, setSelectedDropoff] = useState('gate');
   const [showModal, setShowModal] = useState(false);
@@ -41,6 +41,22 @@ const BookingPage = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Book Your Ride</h1>
           <p className="text-lg text-gray-600">Select your preferred departure time from Soka Junction to Lead City University</p>
         </div>
+
+        {/* Booking History Section */}
+        {userBookingHistory && userBookingHistory.length > 0 && (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 mb-8">
+            <p className="text-sm font-semibold text-blue-900 mb-3">📋 Your Recent Bookings</p>
+            <p className="text-sm text-blue-800 mb-3">You've booked <strong>{userBookingHistory.length} rides this week</strong>. Great habit! 🎉</p>
+            <div className="flex gap-2 overflow-x-auto pb-2">
+              {userBookingHistory.map(booking => (
+                <div key={booking.id} className="flex-shrink-0 bg-white rounded-lg px-4 py-3 border border-blue-200 text-sm text-gray-700">
+                  <p className="font-medium">{booking.time}</p>
+                  <p className="text-xs text-gray-500">{booking.date}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-3 gap-8">
@@ -90,10 +106,21 @@ const BookingPage = () => {
 
                         {/* Trip Details */}
                         <div className="flex-1">
-                          <p className="text-2xl font-bold text-gray-900">{trip.time}</p>
+                          <div className="flex items-center gap-3 mb-1">
+                            <p className="text-2xl font-bold text-gray-900">{trip.time}</p>
+                            {trip.isPopular && (
+                              <span className="inline-flex items-center gap-1 bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full">
+                                <Zap size={12} />
+                                Most Popular
+                              </span>
+                            )}
+                          </div>
                           <p className="text-gray-600 flex items-center gap-2 mt-1">
                             <MapPin size={16} className="shrink-0" />
                             {trip.route}
+                          </p>
+                          <p className="text-gray-500 text-sm mt-2">
+                            ⏱️ Estimated duration: {trip.duration}
                           </p>
                           <div className="flex items-center gap-4 mt-3">
                             <div className="flex items-center gap-1 text-sm text-gray-600">
@@ -107,7 +134,7 @@ const BookingPage = () => {
                       {/* Seat Status */}
                       <div className="text-right ml-4 shrink-0">
                         <div
-                          className={`text-2xl font-bold ${
+                          className={`text-2xl font-bold transition-all ${
                             isFull
                               ? 'text-red-600'
                               : isAlmostFull
@@ -121,7 +148,10 @@ const BookingPage = () => {
                           {isFull ? 'No seats available' : 'seats available'}
                         </p>
                         {isAlmostFull && !isFull && (
-                          <p className="text-xs text-amber-600 font-semibold mt-1">Filling up!</p>
+                          <p className="text-xs text-amber-600 font-semibold mt-1">Only {availableSeats} left!</p>
+                        )}
+                        {isFull && (
+                          <p className="text-xs text-red-600 font-semibold mt-1">Try next schedule</p>
                         )}
                       </div>
                     </div>

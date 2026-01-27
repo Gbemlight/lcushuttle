@@ -64,6 +64,39 @@ const AdminPage = () => {
           </div>
         </div>
 
+        {/* Sponsor-Facing Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200 p-6">
+            <h3 className="text-sm font-semibold text-purple-900 uppercase tracking-wide mb-3">📊 Business Metrics</h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-purple-800 font-medium">Average Daily Occupancy</span>
+                <span className="text-2xl font-bold text-purple-600">{occupancyRate}%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-purple-800 font-medium">Projected Monthly Riders</span>
+                <span className="text-2xl font-bold text-purple-600">1.2K</span>
+              </div>
+              <p className="text-xs text-purple-700 mt-3 italic">Strong engagement metrics for sponsors</p>
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl border border-amber-200 p-6">
+            <h3 className="text-sm font-semibold text-amber-900 uppercase tracking-wide mb-3">💡 Sponsor Insights</h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-amber-800 font-medium">Daily Impressions</span>
+                <span className="text-2xl font-bold text-amber-600">50+</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-amber-800 font-medium">Target Demographics</span>
+                <span className="text-2xl font-bold text-amber-600">18-25</span>
+              </div>
+              <p className="text-xs text-amber-700 mt-3 italic">Premium student audience reach</p>
+            </div>
+          </div>
+        </div>
+
         {/* Trip Details Section */}
         <div>
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Trip Manifest</h2>

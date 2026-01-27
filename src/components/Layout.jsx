@@ -26,12 +26,15 @@ const Layout = () => {
             <div className="flex items-center">
               <Link
                 to="/"
-                className={`flex items-center gap-2 font-bold text-xl transition duration-200 ${
+                className={`flex flex-col items-start font-bold transition duration-200 ${
                   isScrolled ? 'text-blue-700' : 'text-white hover:text-blue-100'
                 }`}
               >
-                <Bus className="h-8 w-8" />
-                <span className="hidden sm:inline">LCU Shuttle</span>
+                <div className="flex items-center gap-2">
+                  <Bus className="h-8 w-8" />
+                  <span className="text-lg hidden sm:inline">LeadCity Shuttle</span>
+                </div>
+                <span className="text-xs hidden sm:inline">Safe rides. Shared smart.</span>
               </Link>
             </div>
 
@@ -102,6 +105,11 @@ const Layout = () => {
                 <li>
                   <Link to="/book" className="text-gray-400 hover:text-white transition">
                     Book a Ride
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/admin" className="text-gray-400 hover:text-white transition text-xs font-medium px-2 py-1 rounded bg-gray-800 inline-block">
+                    Operator View
                   </Link>
                 </li>
                 <li>

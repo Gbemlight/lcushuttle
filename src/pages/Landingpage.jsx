@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Users, Clock, ArrowRight, CheckCircle, Zap, Shield, Heart } from 'lucide-react';
+import { MapPin, Users, Clock, ArrowRight, CheckCircle, Zap, Shield, Heart, Lock, Route, Users2, Phone, Award, Mail, X } from 'lucide-react';
 
 const LandingPage = () => {
+  const [showPartnerModal, setShowPartnerModal] = useState(false);
+  const [showImpactModal, setShowImpactModal] = useState(false);
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
@@ -16,6 +19,12 @@ const LandingPage = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+            {/* Brand Section */}
+            <div className="mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">LeadCity Shuttle</h2>
+              <p className="text-lg md:text-xl text-gray-600 italic">Safe rides. Shared smart.</p>
+            </div>
+
             <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-100 border border-blue-200 text-blue-700 font-medium text-sm animate-pulse-slow">
               ✨ Reliable Campus Transport
             </div>
@@ -36,8 +45,11 @@ const LandingPage = () => {
                 Book a Ride
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-gray-700 border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300">
-                Learn More
+              <button 
+                onClick={() => setShowPartnerModal(true)}
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-gray-700 border-2 border-gray-200 hover:bg-gray-50 transition-all duration-300"
+              >
+                Partner With Us
               </button>
             </div>
           </div>
@@ -79,6 +91,135 @@ const LandingPage = () => {
               <p className="text-gray-600 leading-relaxed">
                 Reliable departures at 7:30 AM, 8:30 AM, and 4:30 PM. We value your time.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust & Safety Section */}
+      <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Built on Trust & Safety</h2>
+            <p className="text-xl text-gray-500">Your security is our top priority</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {/* Verified Drivers */}
+            <div className="text-center p-6">
+              <div className="inline-block p-4 rounded-full bg-blue-100 text-blue-600 mb-4">
+                <Award className="h-8 w-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Verified Drivers</h3>
+              <p className="text-gray-600 text-sm">Background checked & licensed professionals</p>
+            </div>
+
+            {/* Fixed Routes */}
+            <div className="text-center p-6">
+              <div className="inline-block p-4 rounded-full bg-green-100 text-green-600 mb-4">
+                <Route className="h-8 w-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Fixed Routes</h3>
+              <p className="text-gray-600 text-sm">No detours or unexpected changes</p>
+            </div>
+
+            {/* Student-Only */}
+            <div className="text-center p-6">
+              <div className="inline-block p-4 rounded-full bg-purple-100 text-purple-600 mb-4">
+                <Users2 className="h-8 w-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Student-Only Rides</h3>
+              <p className="text-gray-600 text-sm">Safe, verified peer community</p>
+            </div>
+
+            {/* 24/7 Support */}
+            <div className="text-center p-6">
+              <div className="inline-block p-4 rounded-full bg-red-100 text-red-600 mb-4">
+                <Phone className="h-8 w-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">24/7 Support</h3>
+              <p className="text-gray-600 text-sm">Emergency contact always available</p>
+            </div>
+
+            {/* School Partner */}
+            <div className="text-center p-6">
+              <div className="inline-block p-4 rounded-full bg-amber-100 text-amber-600 mb-4">
+                <Lock className="h-8 w-8" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">School Partner</h3>
+              <p className="text-gray-600 text-sm">Approved by Lead City University</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Who This Is For Section */}
+      <section className="bg-gray-50 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Who This Is For</h2>
+            <p className="text-xl text-gray-500">Built for students, schools, and forward-thinking sponsors</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Students Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-blue-600">
+              <div className="text-4xl mb-4">🎓</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">For Students</h3>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Affordable, stress-free transport</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Book in seconds, travel with ease</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Verified peers & safe community</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Schools Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-green-600">
+              <div className="text-4xl mb-4">🏫</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">For Schools</h3>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Safer student movement & tracking</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Real-time occupancy data insights</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Reduce campus parking & congestion</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Sponsors Card */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-purple-600">
+              <div className="text-4xl mb-4">🏢</div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">For Sponsors</h3>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Direct access to student audience</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Brand visibility 3 times daily</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                  <span>Revenue share & partnership models</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -269,6 +410,45 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Business Impact Section - For Investors & Sponsors */}
+      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Built for Growth & Impact</h2>
+            <p className="text-xl text-blue-100">See the numbers that matter to schools and sponsors</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-6 mb-8">
+            <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-white border border-white/20">
+              <div className="text-4xl font-bold mb-2">50+</div>
+              <p className="text-blue-100 text-sm">Daily student riders</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-white border border-white/20">
+              <div className="text-4xl font-bold mb-2">1.2K</div>
+              <p className="text-blue-100 text-sm">Projected monthly riders</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-white border border-white/20">
+              <div className="text-4xl font-bold mb-2">3x</div>
+              <p className="text-blue-100 text-sm">Brand visibility per day</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur rounded-xl p-6 text-white border border-white/20">
+              <div className="text-4xl font-bold mb-2">18-25</div>
+              <p className="text-blue-100 text-sm">Target demographic age</p>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <button
+              onClick={() => setShowImpactModal(true)}
+              className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all duration-300 shadow-lg"
+            >
+              View Full Business Case
+              <ArrowRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800"></div>
@@ -290,6 +470,217 @@ const LandingPage = () => {
           </Link>
         </div>
       </section>
+
+      {/* Partner Modal */}
+      {showPartnerModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 animate-fade-in">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowPartnerModal(false)}
+              className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition"
+            >
+              <X className="h-6 w-6 text-gray-500" />
+            </button>
+
+            {/* Modal Header */}
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Partner With Us</h3>
+              <p className="text-gray-600">We work with schools & brands to create impact.</p>
+            </div>
+
+            {/* Partnership Info */}
+            <div className="space-y-4 mb-6">
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <p className="text-sm font-medium text-blue-900 mb-1">📊 Sponsorship Slots Available</p>
+                <p className="text-xs text-blue-700">Direct visibility to 50+ daily student riders</p>
+              </div>
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <p className="text-sm font-medium text-green-900 mb-1">💰 Revenue Share Model</p>
+                <p className="text-xs text-green-700">Join us in building sustainable student transport</p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="space-y-4 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Organization Name</label>
+                <input
+                  type="text"
+                  placeholder="Your company or school"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  placeholder="contact@example.com"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input
+                  type="tel"
+                  placeholder="+234 (0)701 234 5678"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Contact Methods */}
+            <div className="bg-gray-50 rounded-lg p-4 mb-6 border border-gray-200">
+              <p className="text-sm font-medium text-gray-700 mb-3">📧 Direct Contact</p>
+              <div className="space-y-2 text-sm text-gray-600">
+                <p className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  partnerships@leadcityshuttle.com
+                </p>
+                <p className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  +234 (0)701 234 5678
+                </p>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="space-y-2">
+              <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all">
+                Get in Touch
+              </button>
+              <button
+                onClick={() => setShowPartnerModal(false)}
+                className="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-all"
+              >
+                Maybe Later
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Impact & Revenue Modal */}
+      {showImpactModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 overflow-y-auto animate-fade-in">
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-8 shadow-2xl my-8">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowImpactModal(false)}
+              className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition"
+            >
+              <X className="h-6 w-6 text-gray-500" />
+            </button>
+
+            {/* Modal Header */}
+            <div className="mb-8">
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">LeadCity Shuttle</h3>
+              <p className="text-xl text-blue-600 font-semibold">Business Impact & Opportunity</p>
+            </div>
+
+            {/* Key Metrics */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
+                <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                <p className="text-sm text-gray-700">Daily student riders</p>
+              </div>
+              <div className="bg-green-50 rounded-lg p-5 border border-green-200">
+                <div className="text-3xl font-bold text-green-600 mb-2">1.2K</div>
+                <p className="text-sm text-gray-700">Projected monthly riders</p>
+              </div>
+              <div className="bg-purple-50 rounded-lg p-5 border border-purple-200">
+                <div className="text-3xl font-bold text-purple-600 mb-2">18-25</div>
+                <p className="text-sm text-gray-700">Student demographic age</p>
+              </div>
+              <div className="bg-amber-50 rounded-lg p-5 border border-amber-200">
+                <div className="text-3xl font-bold text-amber-600 mb-2">3x</div>
+                <p className="text-sm text-gray-700">Brand touchpoints daily</p>
+              </div>
+            </div>
+
+            {/* Value Proposition */}
+            <div className="space-y-6 mb-8">
+              <div>
+                <h4 className="text-lg font-bold text-gray-900 mb-3">💼 Revenue Opportunities</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Per-ride commission: Small fee per booking</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Sponsorship slots: Brand visibility on every trip</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Data partnership: Anonymized rider insights</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-bold text-gray-900 mb-3">🎯 Sponsor Benefits</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Direct access to 50+ engaged students daily</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>3 exposures per day (morning, midday, evening)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Premium student demographic (university enrolled)</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Cost per impression beats traditional media</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-bold text-gray-900 mb-3">🏫 School Partnership Value</h4>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Safer student movement with tracking & support</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Real-time occupancy & analytics dashboard</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
+                    <span>Reduces campus congestion & parking issues</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="space-y-2">
+              <button
+                onClick={() => {
+                  setShowImpactModal(false);
+                  setShowPartnerModal(true);
+                }}
+                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
+              >
+                Ready to Partner
+                <ArrowRight className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => setShowImpactModal(false)}
+                className="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-all"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
