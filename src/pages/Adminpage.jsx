@@ -13,7 +13,7 @@ const AdminPage = () => {
   const totalAvailable = totalCapacity - totalBooked;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-brand-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {/* Header */}
         <div className="mb-10">
@@ -66,7 +66,7 @@ const AdminPage = () => {
 
         {/* Sponsor-Facing Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200 p-6">
+          <div className="bg-linear-to-br from-purple-50 to-purple-100 rounded-xl border border-purple-200 p-6">
             <h3 className="text-sm font-semibold text-purple-900 uppercase tracking-wide mb-3">📊 Business Metrics</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
@@ -81,7 +81,7 @@ const AdminPage = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl border border-amber-200 p-6">
+          <div className="bg-linear-to-br from-amber-50 to-amber-100 rounded-xl border border-amber-200 p-6">
             <h3 className="text-sm font-semibold text-amber-900 uppercase tracking-wide mb-3">💡 Sponsor Insights</h3>
             <div className="space-y-3">
               <div className="flex items-center justify-between">

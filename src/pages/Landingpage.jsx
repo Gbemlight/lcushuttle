@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-white text-gray-900 py-24 md:py-32">
+      <section className="relative overflow-hidden bg-linear-to-br from-blue-50 to-white text-gray-900 py-24 md:py-32">
         {/* Abstract Background Shapes */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-40 pointer-events-none">
           <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-blue-200 blur-3xl"></div>
@@ -30,7 +30,7 @@ const LandingPage = () => {
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight leading-tight text-gray-900">
               Seamless Commute to
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 mt-2">Lead City University</span>
+              <span className="block text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-blue-400 mt-2">Lead City University</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-10 font-light">
               Experience safe, comfortable, and punctual shuttle services from Soka Junction directly to campus. The smart choice for every student.
@@ -235,7 +235,7 @@ const LandingPage = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Trip 1 */}
-            <div className="group bg-gradient-to-b from-white to-gray-50 rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="group bg-linear-to-b from-white to-gray-50 rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
               <div className="bg-white rounded-xl p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-3xl font-bold text-gray-900">7:30 <span className="text-lg text-gray-500 font-medium">AM</span></h3>
@@ -243,7 +243,7 @@ const LandingPage = () => {
                     Available
                   </span>
                 </div>
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="flex items-center mb-4">
                     <div className="w-2 h-2 rounded-full bg-brand-500 mr-2"></div>
                     <p className="text-gray-600 font-medium">Soka Junction</p>
@@ -270,7 +270,7 @@ const LandingPage = () => {
             </div>
 
             {/* Trip 2 */}
-            <div className="group bg-gradient-to-b from-white to-gray-50 rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="group bg-linear-to-b from-white to-gray-50 rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
               <div className="bg-white rounded-xl p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-3xl font-bold text-gray-900">8:30 <span className="text-lg text-gray-500 font-medium">AM</span></h3>
@@ -278,7 +278,7 @@ const LandingPage = () => {
                     Filling Fast
                   </span>
                 </div>
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="flex items-center mb-4">
                     <div className="w-2 h-2 rounded-full bg-brand-500 mr-2"></div>
                     <p className="text-gray-600 font-medium">Soka Junction</p>
@@ -305,7 +305,7 @@ const LandingPage = () => {
             </div>
 
             {/* Trip 3 */}
-            <div className="group bg-gradient-to-b from-white to-gray-50 rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+            <div className="group bg-linear-to-b from-white to-gray-50 rounded-2xl p-1 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
               <div className="bg-white rounded-xl p-6 h-full flex flex-col">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-3xl font-bold text-gray-900">4:30 <span className="text-lg text-gray-500 font-medium">PM</span></h3>
@@ -313,7 +313,7 @@ const LandingPage = () => {
                     Available
                   </span>
                 </div>
-                <div className="flex-grow">
+                <div className="grow">
                   <div className="flex items-center mb-4">
                     <div className="w-2 h-2 rounded-full bg-brand-500 mr-2"></div>
                     <p className="text-gray-600 font-medium">Soka Junction</p>
@@ -411,7 +411,7 @@ const LandingPage = () => {
       </section>
 
       {/* Business Impact Section - For Investors & Sponsors */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-20 px-4 sm:px-6 lg:px-8">
+      <section className="bg-linear-to-r from-blue-600 to-blue-700 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 text-white">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Built for Growth & Impact</h2>
@@ -451,7 +451,7 @@ const LandingPage = () => {
 
       {/* CTA Section */}
       <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-800"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-blue-800"></div>
         <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         
         <div className="relative max-w-4xl mx-auto text-center text-white">
@@ -473,8 +473,8 @@ const LandingPage = () => {
 
       {/* Partner Modal */}
       {showPartnerModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 animate-fade-in overflow-y-auto">
+          <div role="dialog" aria-modal="true" aria-labelledby="partner-modal-title" tabIndex={-1} className="bg-white rounded-2xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             {/* Close Button */}
             <button
               onClick={() => setShowPartnerModal(false)}
@@ -485,7 +485,7 @@ const LandingPage = () => {
 
             {/* Modal Header */}
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Partner With Us</h3>
+              <h3 id="partner-modal-title" className="text-2xl font-bold text-gray-900 mb-2">Partner With Us</h3>
               <p className="text-gray-600">We work with schools & brands to create impact.</p>
             </div>
 
@@ -546,7 +546,10 @@ const LandingPage = () => {
 
             {/* Buttons */}
             <div className="space-y-2">
-              <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all">
+              <button 
+                onClick={() => window.location.href = 'mailto:partnerships@leadcityshuttle.com'}
+                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all"
+              >
                 Get in Touch
               </button>
               <button

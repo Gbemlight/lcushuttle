@@ -30,7 +30,7 @@ const BookingPage = () => {
   const selectedTripDetails = trips.find(t => t.id === selectedTripId);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-brand-50 to-white">
       <div className="max-w-4xl mx-auto px-4 py-8 md:py-12">
         {/* Header */}
         <div className="mb-10">
@@ -49,7 +49,7 @@ const BookingPage = () => {
             <p className="text-sm text-blue-800 mb-3">You've booked <strong>{userBookingHistory.length} rides this week</strong>. Great habit! 🎉</p>
             <div className="flex gap-2 overflow-x-auto pb-2">
               {userBookingHistory.map(booking => (
-                <div key={booking.id} className="flex-shrink-0 bg-white rounded-lg px-4 py-3 border border-blue-200 text-sm text-gray-700">
+                <div key={booking.id} className="shrink-0 bg-white rounded-lg px-4 py-3 border border-blue-200 text-sm text-gray-700">
                   <p className="font-medium">{booking.time}</p>
                   <p className="text-xs text-gray-500">{booking.date}</p>
                 </div>
@@ -230,7 +230,7 @@ const BookingPage = () => {
                   <button
                     onClick={handleBook}
                     disabled={!selectedDropoff}
-                    className="w-full bg-brand-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-brand-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md"
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                   >
                     Reserve Seat
                   </button>
@@ -281,7 +281,7 @@ const BookingPage = () => {
                 setShowModal(false);
                 setSelectedTripId(null);
               }}
-              className="w-full bg-brand-600 text-white py-3 rounded-lg font-semibold hover:bg-brand-700 transition-all"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Back to Bookings
             </button>

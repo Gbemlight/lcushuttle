@@ -18,7 +18,7 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col font-sans bg-gray-50 text-gray-900">
       {/* Sticky Navigation Bar */}
       <nav className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-gradient-to-r from-blue-600 to-blue-500 shadow-lg'
+        isScrolled ? 'bg-white shadow-md' : 'bg-linear-to-r from-blue-600 to-blue-500 shadow-lg'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -137,13 +137,13 @@ const Layout = () => {
           {/* Divider */}
           <div className="border-t border-gray-800 pt-8">
             {/* Bottom Bar */}
-            <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center">
               <p className="text-gray-400 text-sm text-center md:text-left mb-4 md:mb-0">
-                © 2024 Lead City Shuttle Pilot. Built for Demo & Presentation.
+                © 2026 Lead City Shuttle Pilot. Built for Demo & Presentation.
               </p>
-              <p className="text-gray-500 text-xs">
+              {/* <p className="text-gray-500 text-xs">
                 Created with React + Vite + Tailwind CSS
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
