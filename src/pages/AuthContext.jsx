@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Helper to save user to state and storage
+  // Helper to finalize login state
   const finalizeLogin = (userData) => {
     const userWithTime = { ...userData, loginTime: new Date().toISOString() };
     setUser(userWithTime);
@@ -116,25 +116,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated,
-        loading,
-        error,
-        login,
-        register,
-        logout,
-        checkAuth,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = { user, isAuthenticated, loading, error, login, register, logout, checkAuth };
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// Custom hook to use auth context
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) throw new Error('useAuth must be used within an AuthProvider');

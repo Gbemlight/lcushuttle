@@ -3,10 +3,8 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Menu, X, Bus, User, LogOut, Home, MapPin, Calendar, LayoutDashboard } from 'lucide-react';
 
-// Main layout component with persistent navigation and footer
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,15 +12,10 @@ const Layout = () => {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  const handleLogoutClick = () => {
-    setIsMenuOpen(false);
-    setShowLogoutModal(true);
-  };
-
-  const confirmLogout = () => {
+  const handleLogout = () => {
     if (logout) logout();
     navigate('/login');
-    setShowLogoutModal(false);
+    closeMenu();
   };
 
   const navLinks = [
@@ -79,7 +72,7 @@ const Layout = () => {
                     <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-green-500 border-2 border-white rounded-full"></span>
                   </Link>
                   <button
-                    onClick={handleLogoutClick}
+                    onClick={handleLogout}
                     className="flex items-center gap-2 bg-red-50 text-red-600 px-4 py-2 rounded-full text-sm font-medium hover:bg-red-100 transition-all active:scale-95"
                   >
                     <LogOut className="h-4 w-4" />
@@ -175,7 +168,7 @@ const Layout = () => {
                     My Profile
                   </Link>
                   <button
-                    onClick={handleLogoutClick}
+                    onClick={handleLogout}
                     className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-red-600 hover:bg-red-50 transition-colors text-left"
                   >
                     <LogOut className="w-5 h-5" />
@@ -217,37 +210,6 @@ const Layout = () => {
             </p>
         </div>
       </footer>
-
-      {/* Logout Confirmation Modal */}
-      {showLogoutModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-          <div className="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl scale-100 animate-in zoom-in-95 duration-200">
-            <div className="text-center">
-              <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
-                <LogOut className="h-6 w-6 text-red-600" />
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">Sign Out?</h3>
-              <p className="text-sm text-gray-500 mb-6">
-                Are you sure you want to sign out? You will need to log in again to access your dashboard.
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => setShowLogoutModal(false)}
-                  className="flex-1 px-4 py-2.5 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={confirmLogout}
-                  className="flex-1 px-4 py-2.5 bg-red-600 text-white rounded-xl font-semibold hover:bg-red-700 transition-colors shadow-lg shadow-red-200"
-                >
-                  Sign Out
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
