@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 
 // Booking page component - allows students to select trips, dropoff, and reserve seats
 const BookingPage = () => {
-  const { trips, bookSeat, getAvailableSeats, dropoffLocations, userBookingHistory } = useTrips();
+  const { trips, bookSeat, getAvailableSeats, dropoffLocations, pickupLocations, userBookingHistory } = useTrips();
   const [selectedTripId, setSelectedTripId] = useState(null);
   const [selectedDropoff, setSelectedDropoff] = useState('gate');
+  const [selectedPickup, setSelectedPickup] = useState('soka');
   const [showModal, setShowModal] = useState(false);
   const [bookedTrip, setBookedTrip] = useState(null);
 
@@ -17,29 +18,31 @@ const BookingPage = () => {
 
     const trip = trips.find(t => t.id === selectedTripId);
     const dropoff = dropoffLocations.find(d => d.id === selectedDropoff);
+    const pickup = pickupLocations.find(p => p.id === selectedPickup);
 
     // Book the seat
-    const booking = bookSeat(selectedTripId, selectedDropoff, `Student_${Date.now()}`);
+    const booking = bookSeat(selectedTripId, selectedDropoff, `Student_${Date.now()}`, selectedPickup);
 
     if (booking) {
-      setBookedTrip({ ...trip, dropoff: dropoff.name });
+      setBookedTrip({ ...trip, dropoff: dropoff.name, pickup: pickup.name });
       setShowModal(true);
     }
   };
 
   const selectedTripDetails = trips.find(t => t.id === selectedTripId);
+  const selectedPickupDetails = pickupLocations.find(p => p.id === selectedPickup);
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-brand-50 to-white">
-      <div className="max-w-4xl mx-auto px-4 py-8 md:py-12">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
         {/* Header */}
         <div className="mb-10">
-          <Link to="/" className="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-medium mb-6">
+          <Link to="/" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium mb-6">
             <ArrowLeft className="h-5 w-5" />
             Back to Home
           </Link>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Book Your Ride</h1>
-          <p className="text-lg text-gray-600">Select your preferred departure time from Soka Junction to Lead City University</p>
+          <p className="text-lg text-gray-600">Select your pickup location and departure time to Lead City University</p>
         </div>
 
         {/* Booking History Section */}
@@ -67,7 +70,33 @@ const BookingPage = () => {
               <AlertCircle className="h-5 w-5 text-blue-600 shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-medium text-blue-900">Route Information</p>
-                <p className="text-sm text-blue-800 mt-1">All trips depart from Soka Junction and arrive at Lead City University</p>
+                <p className="text-sm text-blue-800 mt-1">All trips arrive at Lead City University</p>
+              </div>
+            </div>
+
+            {/* Pickup Location Selection */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Choose Pickup Location</h2>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {pickupLocations.map((location) => (
+                  <div
+                    key={location.id}
+                    onClick={() => setSelectedPickup(location.id)}
+                    className={`relative rounded-xl border-2 p-4 cursor-pointer transition-all ${
+                      selectedPickup === location.id
+                        ? 'border-blue-600 bg-blue-50 ring-1 ring-blue-600'
+                        : 'border-gray-200 hover:border-blue-300 bg-white'
+                    }`}
+                  >
+                    {location.isPopular && (
+                      <span className="absolute -top-3 right-4 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 border border-amber-200">
+                        <Zap size={10} /> Popular
+                      </span>
+                    )}
+                    <h3 className="font-bold text-gray-900">{location.name}</h3>
+                    <p className="text-sm text-gray-500">{location.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -87,8 +116,8 @@ const BookingPage = () => {
                     className={`
                       rounded-xl border-2 p-6 cursor-pointer transition-all shadow-sm
                       ${isSelected
-                        ? 'border-brand-600 ring-2 ring-brand-600 bg-brand-50'
-                        : 'border-gray-200 hover:border-brand-300 hover:shadow-md'
+                        ? 'border-blue-600 ring-2 ring-blue-600 bg-blue-50'
+                        : 'border-gray-200 hover:border-blue-300 hover:shadow-md'
                       }
                       ${isFull ? 'opacity-50 cursor-not-allowed bg-gray-100' : 'bg-white'}
                     `}
@@ -98,7 +127,7 @@ const BookingPage = () => {
                         {/* Trip Time Icon */}
                         <div
                           className={`p-3 rounded-lg shrink-0 ${
-                            isSelected ? 'bg-brand-200 text-brand-700' : 'bg-gray-100 text-gray-600'
+                            isSelected ? 'bg-blue-200 text-blue-700' : 'bg-gray-100 text-gray-600'
                           }`}
                         >
                           <Clock size={24} />
@@ -188,11 +217,11 @@ const BookingPage = () => {
                   {/* Trip Info */}
                   <div>
                     <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Selected Trip</p>
-                    <div className="bg-brand-50 rounded-lg p-4">
-                      <p className="text-2xl font-bold text-brand-600">{selectedTripDetails.time}</p>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <p className="text-2xl font-bold text-blue-600">{selectedTripDetails.time}</p>
                       <p className="text-sm text-gray-600 mt-2 flex items-center gap-2">
                         <MapPin size={14} />
-                        Soka → LCU
+                        {selectedPickupDetails?.name || 'Soka'} → LCU
                       </p>
                     </div>
                   </div>
@@ -207,7 +236,7 @@ const BookingPage = () => {
                           onClick={() => setSelectedDropoff(location.id)}
                           className={`w-full text-left p-3 rounded-lg border-2 transition-all ${
                             selectedDropoff === location.id
-                              ? 'border-brand-600 bg-brand-50'
+                              ? 'border-blue-600 bg-blue-50'
                               : 'border-gray-200 bg-white hover:border-gray-300'
                           }`}
                         >
@@ -267,7 +296,7 @@ const BookingPage = () => {
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 text-sm">Route</span>
-                <span className="font-semibold text-gray-900">Soka → LCU</span>
+                <span className="font-semibold text-gray-900">{bookedTrip.pickup} → LCU</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 text-sm">Drop-off</span>

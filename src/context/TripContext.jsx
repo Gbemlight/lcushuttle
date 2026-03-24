@@ -55,11 +55,18 @@ const DROPOFF_LOCATIONS = [
   { id: 'carpark', name: 'School Car Park', description: 'Drop-off at student parking area' }
 ];
 
+// Available pickup locations
+const PICKUP_LOCATIONS = [
+  { id: 'soka', name: 'Soka Junction', description: 'Main Bus Stop', isPopular: true },
+  { id: 'challenge', name: 'Challenge', description: 'Texaco Station', isPopular: false },
+  { id: 'molete', name: 'Molete', description: 'Under Bridge', isPopular: false },
+];
+
 export const TripProvider = ({ children }) => {
   const [trips, setTrips] = useState(INITIAL_TRIPS);
   const [bookings, setBookings] = useState([]);
   const [userBookingHistory] = useState(MOCK_BOOKING_HISTORY);
-  const bookSeat = (tripId, dropoffLocation, passengerName = 'Anonymous Passenger') => {
+  const bookSeat = (tripId, dropoffLocation, passengerName = 'Anonymous Passenger', pickupLocation = 'soka') => {
     let bookingSuccessful = false;
 
     setTrips(prevTrips => prevTrips.map(trip => {
@@ -87,6 +94,7 @@ export const TripProvider = ({ children }) => {
         id: Date.now(),
         tripId,
         time: trip.time,
+        pickup: pickupLocation,
         dropoff: dropoffLocation,
         passengerName,
         bookingDate: new Date().toLocaleString()
@@ -115,7 +123,8 @@ export const TripProvider = ({ children }) => {
       bookSeat,
       getTripById,
       getAvailableSeats,
-      dropoffLocations: DROPOFF_LOCATIONS
+      dropoffLocations: DROPOFF_LOCATIONS,
+      pickupLocations: PICKUP_LOCATIONS
     }}>
       {children}
     </TripContext.Provider>

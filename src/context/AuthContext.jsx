@@ -96,6 +96,31 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // 3. Reset Password
+  const resetPassword = async (email, newPassword) => {
+    setLoading(true);
+    setError(null);
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate delay
+
+    try {
+      const users = getUserDatabase();
+      const userIndex = users.findIndex(u => u.email.toLowerCase() === email.toLowerCase());
+
+      if (userIndex === -1) {
+        throw new Error('No account found with this email.');
+      }
+
+      users[userIndex].password = newPassword;
+      setUserDatabase(users);
+      return { success: true };
+    } catch (err) {
+      setError(err.message);
+      return { success: false, error: err.message };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
@@ -125,6 +150,7 @@ export const AuthProvider = ({ children }) => {
         error,
         login,
         register,
+        resetPassword,
         logout,
         checkAuth,
       }}
