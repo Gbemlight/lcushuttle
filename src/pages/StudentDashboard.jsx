@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Clock, Bus, History, Navigation } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
+import { MapPin, Clock, Bus, History, Navigation, QrCode } from 'lucide-react';
+import { useAuth } from './AuthContext';
 
 const StudentDashboard = () => {
   const { user } = useAuth();
@@ -51,7 +51,13 @@ const StudentDashboard = () => {
               <span>Main Gate Drop-off</span>
             </div>
           </div>
-          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Confirmed</span>
+          <div className="flex flex-col items-end gap-2">
+            <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">Confirmed</span>
+            <Link to="/boarding-pass" className="flex items-center gap-1 text-sm text-blue-600 font-bold hover:underline">
+              <QrCode className="h-4 w-4" />
+              View Ticket
+            </Link>
+          </div>
         </div>
       </div>
     </div>

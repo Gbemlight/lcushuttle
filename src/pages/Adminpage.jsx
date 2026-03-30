@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTrips } from '../context/TripContext';
-import { Users, AlertCircle, TrendingUp, Bus, MapPin, Clock, BarChart3 } from 'lucide-react';
+import { Users, AlertCircle, Bus, MapPin, Clock, BarChart3, Camera, X, CheckCircle2, QrCode } from 'lucide-react';
 
 // Operator/Admin dashboard to view trip details, occupancy, and passenger info
 const AdminPage = () => {
   const { trips } = useTrips();
+  const [isScanning, setIsScanning] = useState(false);
+  const [verificationResult, setVerificationResult] = useState(null);
 
   // Calculate total stats for all trips
   const totalBooked = trips.reduce((acc, trip) => acc + trip.booked, 0);
   const totalCapacity = trips.reduce((acc, trip) => acc + trip.capacity, 0);
-  const occupancyRate = Math.round((totalBooked / totalCapacity) * 100);
+  const occupancyRate = totalCapacity > 0 ? Math.round((totalBooked / totalCapacity) * 100) : 0;
   const totalAvailable = totalCapacity - totalBooked;
 
+  const simulateVerification = () => {
+    // This simulates the logic after scanning a QR code
+    setVerificationResult({
+      name: "John Doe",
+      id: "LCU2024001",
+      trip: "08:30 AM",
+      status: "Verified & Paid ✅"
+    });
+    setTimeout(() => {
+      setVerificationResult(null);
+      setIsScanning(false);
+    }, 3000);
+  };
+
   return (
-    <div className="min-h-screen bg-linear-to-b from-brand-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {/* Header */}
-        <div className="mb-10">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Operator Dashboard</h1>
-          <p className="text-lg text-gray-600">Live view of today's shuttle operations and bookings</p>
+        <div className="mb-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">Operator Dashboard</h1>
+            <p className="text-lg text-gray-600">Live view of today's shuttle operations and bookings</p>
+          </div>
+          <button 
+            onClick={() => setIsScanning(true)}
+            className="bg-blue-600 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg hover:bg-blue-700 transition-all active:scale-95"
+          >
+            <Camera className="h-5 w-5" />
+            Scan Boarding Pass
+          </button>
         </div>
 
         {/* Key Metrics Cards */}
@@ -224,6 +249,53 @@ const AdminPage = () => {
           </p>
         </div>
       </div>
+
+      {/* QR Verification Modal */}
+      {isScanning && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 relative shadow-2xl">
+            <button onClick={() => setIsScanning(false)} className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full">
+              <X className="h-6 w-6 text-gray-500" />
+            </button>
+
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold text-gray-900">Boarding Scanner</h3>
+              <p className="text-sm text-gray-500">Scan student QR code to verify entry</p>
+            </div>
+
+            <div className="aspect-square bg-gray-900 rounded-xl mb-6 relative overflow-hidden flex items-center justify-center">
+              {!verificationResult ? (
+                <>
+                  <div className="w-64 h-64 border-2 border-blue-500 rounded-lg animate-pulse flex items-center justify-center">
+                    <div className="w-full h-1 bg-blue-500 absolute top-0 animate-bounce"></div>
+                    <QrCode className="h-20 w-20 text-blue-500/20" />
+                  </div>
+                  <button 
+                    onClick={simulateVerification}
+                    className="absolute bottom-4 bg-white/10 text-white text-xs px-4 py-2 rounded-full hover:bg-white/20"
+                  >
+                    [ Demo: Simulate Scan ]
+                  </button>
+                </>
+              ) : (
+                <div className="text-center p-6 bg-green-50 w-full h-full flex flex-col items-center justify-center animate-in fade-in zoom-in duration-300">
+                  <CheckCircle2 className="h-16 w-16 text-green-600 mb-4" />
+                  <h4 className="text-2xl font-bold text-green-900">{verificationResult.status}</h4>
+                  <div className="mt-4 text-left bg-white p-4 rounded-lg shadow-sm border border-green-100 w-full">
+                    <p className="text-xs text-gray-500 uppercase font-bold tracking-tighter">Passenger</p>
+                    <p className="text-lg font-bold text-gray-900">{verificationResult.name}</p>
+                    <p className="text-sm text-gray-600">ID: {verificationResult.id}</p>
+                    <div className="mt-2 pt-2 border-t border-gray-100 flex justify-between">
+                      <span className="text-sm text-gray-500 font-medium">Trip:</span>
+                      <span className="text-sm font-bold text-blue-600">{verificationResult.trip}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

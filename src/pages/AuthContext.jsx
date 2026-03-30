@@ -19,8 +19,20 @@ const setUserDatabase = (users) => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // Initialize state directly from sessionStorage to prevent flickering on page refresh
+  const [user, setUser] = useState(() => {
+    const stored = sessionStorage.getItem('lcu-shuttle-active-user');
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  });
+
+  const [isAuthenticated, setIsAuthenticated] = useState(() => !!sessionStorage.getItem('lcu-shuttle-active-user'));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -115,6 +127,11 @@ export const AuthProvider = ({ children }) => {
       }
     }
   }, []);
+
+  // Run the auth check once when the provider mounts
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const value = { user, isAuthenticated, loading, error, login, register, logout, checkAuth };
 

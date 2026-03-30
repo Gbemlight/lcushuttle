@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './pages/AuthContext';
 import { TripProvider } from './context/TripContext';
-import Layout from './components/Layout';
+import Layout from './Layout';
 
 // Pages
 import LandingPage from './pages/Landingpage';
@@ -16,6 +16,7 @@ import StudentDashboard from './pages/StudentDashboard';
 import TrackingPage from './pages/TrackingPage';
 import HistoryPage from './pages/HistoryPage';
 import ProfilePage from './pages/ProfilePage';
+import BoardingPassPage from './pages/BoardingPassPage';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
               <Route path="/tracking" element={<TrackingPage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/boarding-pass" element={<BoardingPassPage />} />
             </Route>
 
             {/* Standalone Routes - No Layout */}
