@@ -1,8 +1,8 @@
-# Lead City Shuttle - MVP Web Application
+# LeadCity Shuttle - Sponsor-Ready Pitch Tool
 
-**Safe, Affordable Group Transport for Lead City University Students**
+**Safe rides. Shared smart.**
 
-A responsive web application MVP for a student shared-bus booking platform, built for demo and presentation to sponsors, school management, and partners.
+A responsive web application MVP transformed into a high-impact business pitch tool for student transportation, connecting **Soka Junction** to **Lead City University**.
 
 ## Project Overview
 
@@ -56,14 +56,19 @@ lead-city-shuttle/
 ### 1. Landing Page (`/`)
 - **Hero Section**: "Safe, Affordable Group Transport for Lead City Students"
 - **Call-to-Action Buttons**: "Book a Ride" and "Partner With Us"
-- **Features Showcase**: Route, capacity, schedule
+- **Trust & Safety Section**: 5-icon showcase of safety protocols (Verified drivers, Fixed routes, etc.)
+- **Stakeholder Showcase**: Tailored value propositions for Students, Schools, and Sponsors
+- **Business Impact Metrics**: Real-time stats (50+ daily riders, 1.2K monthly projection)
 - **Schedule Display**: Today's trips with seat availability
-- **Benefits Section**: Why students love the service
-- **Professional Design**: Modern startup aesthetic
+- **Partnership Modals**: 
+    - **Partner With Us**: Lead generation form for sponsors/schools
+    - **Business Case**: Comprehensive impact and revenue model presentation
 
 ### 2. Booking Page (`/book`)
+- **Booking History**: Personal engagement tracker showing recent trips
 - **Trip Selection**: Choose from 3 daily trips (7:30 AM, 8:30 AM, 4:30 PM)
-- **Real-time Availability**: Shows available seats per trip
+- **Visual Badges**: "Most Popular" and "Only X seats left!" status indicators
+- **Real-time Availability**: Live seat counter per trip
 - **Drop-off Options**: 
   - School Gate
   - School Car Park
@@ -77,6 +82,9 @@ lead-city-shuttle/
   - Fleet occupancy rate (%)
   - Available seats remaining
   - Active trips count
+- **Business Insights**:
+  - Projected monthly reach and engagement metrics
+  - Daily brand impressions for sponsors
 - **Trip Manifest**: Detailed view of each trip
   - Departure time and route
   - Occupancy progress bar
@@ -95,6 +103,7 @@ Trip 2: 8:30 AM  - 28/30 seats booked (almost full)
 Trip 3: 4:30 PM  - 5/35 seats booked (plenty of space)
 
 // 51 sample student names representing booked passengers
+// Mocked booking history for active user engagement demonstration
 ```
 
 ## Setup Instructions

@@ -33,7 +33,7 @@ const BookingPage = () => {
   const selectedPickupDetails = pickupLocations.find(p => p.id === selectedPickup);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-linear-to-b from-blue-50 to-white">
       <div className="max-w-6xl mx-auto px-4 py-8 md:py-12">
         {/* Header */}
         <div className="mb-10">
